@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WaterRescue</class>
+ <widget class="QMainWindow" name="WaterRescue">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1140</width>
+    <height>784</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>大型水陆两栖飞机着水救援安全性仿真软件</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/新前缀/resource/boat_128px_1189224_easyicon.net.ico</normaloff>:/新前缀/resource/boat_128px_1189224_easyicon.net.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,1,1">
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>12</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>环境参数：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QRadioButton" name="radioButton">
+             <property name="text">
+              <string>近海</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_2">
+             <property name="text">
+              <string>远海</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="WaterSpeedLabel">
+             <property name="text">
+              <string>洋流速度：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="SeaSpeeddoubleSpinBox">
+             <property name="statusTip">
+              <string>洋流速度</string>
+             </property>
+             <property name="suffix">
+              <string>km/h</string>
+             </property>
+             <property name="maximum">
+              <double>100000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_3"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QLabel" name="WaterDirectionLabel_2">
+             <property name="text">
+              <string>洋流方向：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="SeaAngledoubleSpinBox">
+             <property name="statusTip">
+              <string>洋流方向</string>
+             </property>
+             <property name="suffix">
+              <string>°</string>
+             </property>
+             <property name="maximum">
+              <double>90.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>以正北为0°，顺时针为正</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_2"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QLabel" name="TrendSpeedLabel_5">
+             <property name="text">
+              <string>潮流速度：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="TrendSpeeddoubleSpinBox">
+             <property name="statusTip">
+              <string>海风速度</string>
+             </property>
+             <property name="suffix">
+              <string>km/h</string>
+             </property>
+             <property name="maximum">
+              <double>100000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_17">
+           <item>
+            <widget class="QLabel" name="WaterDirectionLabel_6">
+             <property name="text">
+              <string>潮流方向：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="TrendAngledoubleSpinBox">
+             <property name="statusTip">
+              <string>海风方向</string>
+             </property>
+             <property name="suffix">
+              <string>°</string>
+             </property>
+             <property name="maximum">
+              <double>90.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>以正北为0°，顺时针为正</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QLabel" name="WindSpeedLabel">
+             <property name="text">
+              <string>海风速度：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="WindSpeeddoubleSpinBox">
+             <property name="statusTip">
+              <string>海风速度</string>
+             </property>
+             <property name="suffix">
+              <string>km/h</string>
+             </property>
+             <property name="maximum">
+              <double>100000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QLabel" name="WaterDirectionLabel_3">
+             <property name="text">
+              <string>海风方向：</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="WindAngledoubleSpinBox">
+             <property name="statusTip">
+              <string>海风方向</string>
+             </property>
+             <property name="suffix">
+              <string>°</string>
+             </property>
+             <property name="maximum">
+              <double>90.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>以正北为0°，顺时针为正</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_3">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>漂移物体编辑：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="MenpushButton">
+             <property name="text">
+              <string>人员</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="BoatpushButton">
+             <property name="text">
+              <string>救生艇</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QPushButton" name="BoatpushButton_2">
+             <property name="text">
+              <string>船舶</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>遇难时间：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateTimeEdit" name="dateTimeEdit"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>预计救援时间：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QSpinBox" name="TimespinBox_1"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>小时</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="TimespinBox_2"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>分</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="TimespinBox_3"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string>秒</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_2">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPushButton" name="FigurepushButton">
+             <property name="text">
+              <string>计算降落点</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>最佳降落点：</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="LocationtextEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>25</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
+          <item>
+           <widget class="QPushButton" name="TwoDpushButton">
+            <property name="text">
+             <string>二维仿真</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="TreeDpushButton">
+            <property name="statusTip">
+             <string>动画仿真</string>
+            </property>
+            <property name="whatsThis">
+             <string>动画仿真</string>
+            </property>
+            <property name="text">
+             <string>动画仿真</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="FirstpushButton">
+          <property name="text">
+           <string>初始状态</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="LastpushButton">
+          <property name="text">
+           <string>末状态</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>遇难位置</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_5"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+   <zorder>line</zorder>
+   <zorder></zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1140</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="FileMenu">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="FileNew"/>
+    <addaction name="FileOpen"/>
+    <addaction name="FileSave"/>
+    <addaction name="FileSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="filedefault"/>
+    <addaction name="separator"/>
+    <addaction name="FileQuit"/>
+   </widget>
+   <widget class="QMenu" name="EditMenu">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="undo"/>
+    <addaction name="redo"/>
+    <addaction name="reset"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="HelpMenu">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="Introduce"/>
+    <addaction name="separator"/>
+    <addaction name="Helper"/>
+   </widget>
+   <widget class="QMenu" name="SimulationMenu">
+    <property name="title">
+     <string>仿真(&amp;S)</string>
+    </property>
+    <addaction name="start"/>
+    <addaction name="action"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>模型(m)</string>
+    </property>
+    <addaction name="boat"/>
+    <addaction name="needsaver"/>
+   </widget>
+   <addaction name="FileMenu"/>
+   <addaction name="EditMenu"/>
+   <addaction name="menu_2"/>
+   <addaction name="SimulationMenu"/>
+   <addaction name="HelpMenu"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="FileNew"/>
+   <addaction name="FileOpen"/>
+   <addaction name="FileSave"/>
+   <addaction name="FileSaveAs"/>
+   <addaction name="separator"/>
+   <addaction name="undo"/>
+   <addaction name="redo"/>
+   <addaction name="reset"/>
+   <addaction name="separator"/>
+   <addaction name="needsaver"/>
+   <addaction name="boat"/>
+   <addaction name="separator"/>
+   <addaction name="start"/>
+   <addaction name="pause"/>
+   <addaction name="stop"/>
+   <addaction name="speed"/>
+   <addaction name="slow"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="FileOpen">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_d9vcchetbfkcsor/打开_1.png</normaloff>:/icon_d9vcchetbfkcsor/打开_1.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开(&amp;O)</string>
+   </property>
+   <property name="statusTip">
+    <string>打开(O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="FileQuit">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resource/filequit.png</normaloff>:/resource/filequit.png</iconset>
+   </property>
+   <property name="text">
+    <string>退出(&amp;Q)</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+  </action>
+  <action name="FileNew">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/新建.png</normaloff>:/icon_1jx48f4me37vte29/新建.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建(&amp;N)</string>
+   </property>
+   <property name="statusTip">
+    <string>新建(N)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="FileSaveAs">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_d9vcchetbfkcsor/另存.png</normaloff>:/icon_d9vcchetbfkcsor/另存.png</iconset>
+   </property>
+   <property name="text">
+    <string>另存(&amp;A)</string>
+   </property>
+   <property name="statusTip">
+    <string>另存(A)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="reset">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/重置.png</normaloff>:/icon_1jx48f4me37vte29/重置.png</iconset>
+   </property>
+   <property name="text">
+    <string>重置数据</string>
+   </property>
+  </action>
+  <action name="undo">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/撤销.png</normaloff>:/icon_1jx48f4me37vte29/撤销.png</iconset>
+   </property>
+   <property name="text">
+    <string>撤销 </string>
+   </property>
+   <property name="statusTip">
+    <string>撤销</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="redo">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/撤销_1.png</normaloff>:/icon_1jx48f4me37vte29/撤销_1.png</iconset>
+   </property>
+   <property name="text">
+    <string>恢复</string>
+   </property>
+   <property name="statusTip">
+    <string>恢复</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="Introduce">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/新前缀/resource/help_info_128px_1172051_easyicon.net.ico</normaloff>:/新前缀/resource/help_info_128px_1172051_easyicon.net.ico</iconset>
+   </property>
+   <property name="text">
+    <string>软件简介</string>
+   </property>
+  </action>
+  <action name="Helper">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/新前缀/resource/circle_help_128px_1189326_easyicon.net.ico</normaloff>:/新前缀/resource/circle_help_128px_1189326_easyicon.net.ico</iconset>
+   </property>
+   <property name="text">
+    <string>功能帮助</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+/</string>
+   </property>
+  </action>
+  <action name="FileSave">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/保存.png</normaloff>:/icon_1jx48f4me37vte29/保存.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+   <property name="statusTip">
+    <string>保存(S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="boat">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/救生圈.png</normaloff>:/icon_1jx48f4me37vte29/救生圈.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加救生艇</string>
+   </property>
+  </action>
+  <action name="needsaver">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/人员.png</normaloff>:/icon_1jx48f4me37vte29/人员.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加待救人员</string>
+   </property>
+  </action>
+  <action name="filedefault">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/新前缀/resource/default_icon_256px_1114588_easyicon.net.png</normaloff>:/新前缀/resource/default_icon_256px_1114588_easyicon.net.png</iconset>
+   </property>
+   <property name="text">
+    <string>配置</string>
+   </property>
+   <property name="statusTip">
+    <string>配置</string>
+   </property>
+  </action>
+  <action name="start">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/播放器播放.png</normaloff>:/icon_1jx48f4me37vte29/播放器播放.png</iconset>
+   </property>
+   <property name="text">
+    <string>二维仿真</string>
+   </property>
+   <property name="toolTip">
+    <string>二维仿真</string>
+   </property>
+  </action>
+  <action name="pause">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/播放器_暂停.png</normaloff>:/icon_1jx48f4me37vte29/播放器_暂停.png</iconset>
+   </property>
+   <property name="text">
+    <string>暂停</string>
+   </property>
+  </action>
+  <action name="stop">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/停止.png</normaloff>:/icon_1jx48f4me37vte29/停止.png</iconset>
+   </property>
+   <property name="text">
+    <string>停止</string>
+   </property>
+  </action>
+  <action name="speed">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/快进.png</normaloff>:/icon_1jx48f4me37vte29/快进.png</iconset>
+   </property>
+   <property name="text">
+    <string>快进</string>
+   </property>
+  </action>
+  <action name="slow">
+   <property name="icon">
+    <iconset resource="tubiao.qrc">
+     <normaloff>:/icon_1jx48f4me37vte29/快退.png</normaloff>:/icon_1jx48f4me37vte29/快退.png</iconset>
+   </property>
+   <property name="text">
+    <string>快退</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>动画仿真</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="tubiao.qrc"/>
+ </resources>
+ <connections/>
+</ui>

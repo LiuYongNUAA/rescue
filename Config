@@ -1,0 +1,12 @@
+MenDWL = 2.1399999999999997
+MenCWL = 0.54
+MenDWLerror = 5.56
+MenCWLerror = 4.34
+LifeBoatDWL = 3.13
+LifeBoatCWL = 1.21
+LifeBoatDWLerror = 4.84
+LifeBoatCWLerror = 3.1
+ShipDWL = 1.25
+ShipCWL = 0.19
+ShipDWLerror = 3.96
+ShipCWLerror = 1.14

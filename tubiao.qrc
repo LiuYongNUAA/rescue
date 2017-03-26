@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="/">
+    <file>icon_1jx48f4me37vte29/保存.png</file>
+    <file>icon_d9vcchetbfkcsor/打开_1.png</file>
+    <file>icon_d9vcchetbfkcsor/另存.png</file>
+    <file>icon_1jx48f4me37vte29/播放器_暂停.png</file>
+    <file>icon_1jx48f4me37vte29/播放器播放.png</file>
+    <file>icon_1jx48f4me37vte29/撤销.png</file>
+    <file>icon_1jx48f4me37vte29/撤销_1.png</file>
+    <file>icon_1jx48f4me37vte29/打开.png</file>
+    <file>icon_1jx48f4me37vte29/救生圈.png</file>
+    <file>icon_1jx48f4me37vte29/快进.png</file>
+    <file>icon_1jx48f4me37vte29/快退.png</file>
+    <file>icon_1jx48f4me37vte29/人员.png</file>
+    <file>icon_1jx48f4me37vte29/停止.png</file>
+    <file>icon_1jx48f4me37vte29/新建.png</file>
+    <file>icon_1jx48f4me37vte29/重置.png</file>
+  </qresource>
+</RCC>
