@@ -8,6 +8,7 @@ from GraphicsLineItem import *
 import sys
 import UI_mainwindow
 import math
+from math import sin, cos
 import planeposition
 from SinglePoint import *
 from configobj import ConfigObj
@@ -54,24 +55,51 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
 
         self.connect(self.filedefault, SIGNAL('triggered()'), self.configure)
 
+    def xfloat(self, DWL, CWL, SeaSp, SeaA, TrendSp, TrenA, WcS, WcA, WindA):
+        return DWL * sin(WindA) + CWL * cos(WindA) + SeaSp * sin(SeaA) + TrendSp * sin(TrenA) + WcS * sin(WcA)
+
+    def yfloat(self,DWL, CWL, SeaSp, SeaA, TrendSp, TrenA, WcS, WcA, WindA):
+        return DWL * cos(WindA) - CWL * sin(WindA) + SeaSp * cos(SeaA) + TrendSp * cos(TrenA) + WcS * cos(WcA)
 
     def Float(self):
         conf = ConfigObj('Config')
-        MenDWL = conf['MenDWL']
-        MenCWL = conf['MenCWL']
-        MenDWLerror = conf['MenDWLerror']
-        MenCWLerror = conf['MenCWLerror']
-        LifeBoatDWL = conf['LifeBoatDWL']
-        LifeBoatCWL = conf['LifeBoatCWL']
-        LifeBoatDWLerror = conf['LifeBoatDWLerror']
-        LifeBoatCWLerror = conf['LifeBoatCWLerror']
-        ShipDWL = conf['ShipDWL']
-        ShipCWL = conf['ShipCWL']
-        ShipDWLerror = conf['ShipDWLerror']
-        ShipCWLerror = conf['ShipCWLerror']
-        WindSpeed = self.WindSpeeddoubleSpinBox.value()
-        WindAngle = self.WindAngledoubleSpinBox.value()
-        print(MenDWL, WindSpeed)
+        MenDWL = float(conf['MenDWL'])/ 100
+        MenCWL = float(conf['MenCWL']) / 100
+        MenDWLerror = float(conf['MenDWLerror']) / 100
+        MenCWLerror = float(conf['MenCWLerror']) / 100
+        LifeBoatDWL = float(conf['LifeBoatDWL']) / 100
+        LifeBoatCWL = float(conf['LifeBoatCWL']) / 100
+        LifeBoatDWLerror = float(conf['LifeBoatDWLerror']) /100
+        LifeBoatCWLerror = float(conf['LifeBoatCWLerror']) /100
+        ShipDWL = float(conf['ShipDWL']) / 100
+        ShipCWL = float(conf['ShipCWL']) / 100
+        ShipDWLerror = float(conf['ShipDWLerror']) / 100
+        ShipCWLerror = float(conf['ShipCWLerror']) / 100
+        WindSpeed = self.WindSpeeddoubleSpinBox.value() / 3.6
+        WindAngle = self.WindAngledoubleSpinBox.value() * PI / 180
+        SeaSpeed = self.SeaSpeeddoubleSpinBox.value() / 3.6
+        SeaAngle = self.SeaAngledoubleSpinBox.value() * PI / 180
+        TrendSpeed = self.TrendSpeeddoubleSpinBox.value() / 3.6
+        TrendAngle = self.TrendAngledoubleSpinBox.value() * PI / 180
+        Time = self.TimespinBox_1.value()*3600 + self.TimespinBox_2.value()*60 + self.TimespinBox_3.value()
+        MenDWLSpeed = MenDWL * WindSpeed + MenDWLerror
+        MenCWLSpeed = MenCWL * WindSpeed + MenCWLerror
+        LifeDWLSpeed = LifeBoatDWL * WindSpeed + LifeBoatDWLerror
+        LifeCWLSpeed = LifeBoatCWL * WindSpeed + LifeBoatCWLerror
+        ShipDWLSpeed = ShipDWL * WindSpeed + ShipDWLerror
+        ShipCWLSpeed = ShipCWL * WindSpeed + ShipCWLerror
+        if WindSpeed < 9.25:
+            Wc_Speed = 0.09
+        else:
+            Wc_Speed = (0.230446 + 0.0070957 * WindSpeed * 0.514) ** 2 + 0.09
+        Wc_Angle = (-35.338 + 3587.98 / (0.514 * WindSpeed) + WindAngle) * PI / 180
+        Menxfloat = self.xfloat(MenDWLSpeed, MenCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+        Menyfloat = self.yfloat(MenDWLSpeed, MenCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+        Lifexfloat = self.xfloat(LifeDWLSpeed, LifeCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+        Lifeyfloat = self.yfloat(LifeDWLSpeed, LifeCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+        Shipxfloat = self.xfloat(ShipDWLSpeed, ShipCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+        Shipyfloat = self.yfloat(ShipDWLSpeed, ShipCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+
     def p(self,s=None):
         if not s:
             return
@@ -432,6 +460,7 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         self.__dirty=True
         pointx=self.convert1(pos.y())
         pointy=self.convert3(pos.x())
+
         return('%s,%s'%(pointx, pointy))
 
 
@@ -446,6 +475,8 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         b = a[1].split("'")
         fen1 = b[0]
         miao1 = b[1]+b[3]
+
+        print([du + fen/60 + miao/360,du1 + fen1/60 +miao1/360 ])
         return([[du,fen,miao], [du1,fen1,miao1]])
 
 
@@ -920,7 +951,7 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
                     # QGraphicsView::ScrollHandDrag ：光标变为手型，可以拖动场景进行移动。
                     # QGraphicsView::RubberBandDrag ：使用橡皮筋效果，进行区域选择，可以选中一个区域内的所有图形项。
                 else:
-                     QMessageBox.about(self, '提示', '''请先选择飞机降落点''')
+                     QMessageBox.about(self, '提示', '''请先确定遇难位置''')
 
     def mouseReleaseEvent(self, event):
         if self.addorigin:
