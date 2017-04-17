@@ -61,7 +61,21 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
     def yfloat(self,DWL, CWL, SeaSp, SeaA, TrendSp, TrenA, WcS, WcA, WindA):
         return DWL * cos(WindA) - CWL * sin(WindA) + SeaSp * cos(SeaA) + TrendSp * cos(TrenA) + WcS * cos(WcA)
 
-    def Float(self):
+    def Transfor(self, alljw):
+        for jw in alljw:
+            jw[0] = jw[0] * 20037508.34 / 180
+            jw[1] = math.log(math.tan((90 + jw[1] ) * PI / 360))/(PI / 180)
+            jw[1] = jw[1] * 20037508.34 / 180
+        return alljw
+
+    def Transback(self, alljw):
+        for jw in alljw:
+            jw[0] = jw[0] / 20037508.34 * 180
+            jw[1] = jw[1] / 20037508.34 * 180
+            jw[1] = 180 / PI * (2 * math.atan(math.exp(jw[1] * PI / 180)) - PI / 2)
+        return alljw
+
+    def Float(self, alljw):
         conf = ConfigObj('Config')
         MenDWL = float(conf['MenDWL'])/ 100
         MenCWL = float(conf['MenCWL']) / 100
@@ -99,6 +113,10 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         Lifeyfloat = self.yfloat(LifeDWLSpeed, LifeCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
         Shipxfloat = self.xfloat(ShipDWLSpeed, ShipCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
         Shipyfloat = self.yfloat(ShipDWLSpeed, ShipCWLSpeed, SeaSpeed, SeaAngle, TrendSpeed, TrendAngle, Wc_Speed, Wc_Angle, WindAngle) * Time
+        for jw in alljw:
+            jw[0] = jw[0] + Menxfloat
+            jw[1] = jw[1] + Menyfloat
+        return alljw
 
     def p(self,s=None):
         if not s:
@@ -461,6 +479,13 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         pointx=self.convert1(pos.y())
         pointy=self.convert3(pos.x())
 
+        return('%s,%s'%(pointx, pointy))\
+
+    def pointzuobiao1(self, pos):
+        self.__dirty=True
+        pointx=self.convert2(pos.y())
+        pointy=self.convert4(pos.x())
+
         return('%s,%s'%(pointx, pointy))
 
 
@@ -476,7 +501,7 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         fen1 = b[0]
         miao1 = b[1]+b[3]
 
-        print([du + fen/60 + miao/360,du1 + fen1/60 +miao1/360 ])
+
         return([[du,fen,miao], [du1,fen1,miao1]])
 
 
@@ -942,8 +967,7 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
                     if event.buttons() == Qt.RightButton:
                         self.__dirty = True
                         self.drawcircle(self.graphicsView.mapToScene(pos))
-                        for i in self.circleitem:
-                            print(self.pointzuobiao(i.pos()))
+
                     elif event.buttons() == Qt.MiddleButton:
                         pass
                     QGraphicsView.mousePressEvent(self.graphicsView, event)
@@ -1005,12 +1029,36 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         configureexample = Configure.ConfDlg(self)
         configureexample.show()
 
+    @pyqtSignature('')
+    def Getjw(self):
+        alljw = []
+        for i in self.circleitem:
+            jw = self.pointzuobiao1(i.pos())
+            jw = jw.replace('N,', '')
+            jw = jw.replace('S,', '')
+            jw = jw.split('°')
+            jw = [float(jw[0]), float(jw[1])]
+            alljw.append(jw)
+        return alljw
 
     @pyqtSignature('')
     def on_pushButton_clicked(self):
         planepositionexample=planeposition.PlanePositionDlg(self)
         planepositionexample.show()
         self.connect(planepositionexample, SIGNAL('ppap(QString)'), self.p)
+
+
+    @pyqtSignature('')
+    def on_FigurepushButton_clicked(self):
+
+        alljw = self.Getjw()
+        alljw = self.Transfor(alljw)
+        alljw = self.Float(alljw)
+        alljw = self.Transback(alljw)
+        print(alljw)
+
+
+        #self.circleitem[1].setPos(QPoint(10,10))
 
 
 if __name__ == '__main__':
