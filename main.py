@@ -1066,7 +1066,7 @@ if __name__ == '__main__':
     form = Mainwindow()
     form.show()
     app.exec_()
-    form.Float()
+
 
 
 
