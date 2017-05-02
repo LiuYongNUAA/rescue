@@ -1029,16 +1029,19 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         configureexample = Configure.ConfDlg(self)
         configureexample.show()
 
-    @pyqtSignature('')
+
     def Getjw(self):
         alljw = []
         for i in self.circleitem:
             jw = self.pointzuobiao1(i.pos())
+            print(jw)
             jw = jw.replace('N,', '')
             jw = jw.replace('S,', '')
             jw = jw.split('°')
             jw = [float(jw[0]), float(jw[1])]
             alljw.append(jw)
+
+
         return alljw
 
     @pyqtSignature('')
@@ -1055,12 +1058,9 @@ class Mainwindow(QMainWindow, UI_mainwindow.Ui_WaterRescue):
         alljw = self.Transfor(alljw)
         alljw = self.Float(alljw)
         alljw = self.Transback(alljw)
-        print(alljw)
-
-
+        allpoint = [str(jw[0]) + '°N,' + str(jw[1]) + '°W' for jw in alljw]
+        print(allpoint)
         #self.circleitem[1].setPos(QPoint(10,10))
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     form = Mainwindow()

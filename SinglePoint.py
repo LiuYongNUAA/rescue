@@ -6,7 +6,7 @@ class SinglePoint(QGraphicsItem):
         Rect = QRectF(-s, -s, s, s)
         self.Rect = Rect
         self.position = position
-        self.falseposition=position
+        self.falseposition = position
         self.color = color
         self.setPos(self.position)
         self.people = 1
